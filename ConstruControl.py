@@ -1,8 +1,18 @@
 import tkinter as tk
 import xlrd
+import subprocess
+
+def run(runfile):
+  with open(runfile,"r") as rnf:
+    exec(rnf.read())
+
+def combine_funcs(*funcs):
+    def combined_func(*args, **kwargs):
+        for f in funcs:
+            f(*args, **kwargs)
+    return combined_func
 
 class MainWindow(tk.Frame):
-    counter = 0
     def __init__(self, *args, **kwargs):
         tk.Frame.__init__(self, *args, **kwargs)
         self.label = tk.Label(self, text="ConstruControl v. 1.0")
@@ -22,8 +32,9 @@ class MainWindow(tk.Frame):
         self.label = tk.Label(self, text=" ")
         self.label.pack(side="top", fill="both", expand=True, padx=100, pady=5)
 
-    def quit(self):
-        self.root.destroy
+    def admit(self):
+            root.destroy
+            run('main.py')
 
     def create_window_create(self):
         t = tk.Toplevel(self)
@@ -36,24 +47,23 @@ class MainWindow(tk.Frame):
         i.pack(side="top", fill="both", expand=True, padx=10, pady=10)
         l = tk.Label(t, text="Cargar imágen de portada")
         l.pack(side="top", fill="both", expand=True, padx=10, pady=10)
-        b = tk.Button(t, text="Aceptar",command=self.create_Main_Layout)
+        b = tk.Button(t, text="Aceptar",command=self.admit)
         b.pack(side="left",expand=True, padx=10,pady = 10)
-        b = tk.Button(t, text="Atrás")
+        b = tk.Button(t, text="Atrás",command=t.destroy)
         b.pack(side="left",expand=True, padx=10,pady = 10)
 
     def create_window_load(self):
         t = tk.Toplevel(self)
         self.root = tk;
         t.wm_title("Cargar")
-        b = tk.Button(t, text="Aceptar",command=self.create_Main_Layout)
+        b = tk.Button(t, text="Aceptar",command=self.loadMain)
         b.pack(side="left",expand=True, padx=10,pady = 10)
-        b = tk.Button(t, text="Atrás")
+        b = tk.Button(t, text="Atrás",command=t.destroy)
         b.pack(side="left",expand=True, padx=10,pady = 10)
 
     def create_window_about(self):
-        self.counter += 1
         t = tk.Toplevel(self)
-        t.wm_title("Window #%s" % self.counter)
+        t.wm_title("Acerca de")
         l = tk.Label(t, text="ConstruControl")
         l.pack(side="top", fill="both", expand=True, padx=100, pady=5)
         l = tk.Label(t, text="V.1.0")
@@ -82,18 +92,6 @@ class MainWindow(tk.Frame):
         l.pack(side="top", fill="both", expand=True, padx=100, pady=5)
         l = tk.Label(t, text="2017-1")
         l.pack(side="top", fill="both", expand=True, padx=100, pady=5)
-
-    def create_Main_Layout(self):
-        t = tk.Toplevel(self)
-        t.wm_title("Capítulos")
-        book = xlrd.open_workbook("Presupuestos/Trabajo final- SAR-NGC-JCM.xlsx", ragged_rows = True)
-        sheet = book.sheet_by_index(8)
-        chapters = [5,69,90,136,308,383,411,420,438,539,565,879,996,1105,1116,1428,1702,2049,2070,2079]
-        for  i in range(0,len(chapters) - 1):
-            cellNum = chapters[i] - 1
-            cell = sheet.cell(cellNum,2)
-            b = tk.Button(t, text=cell.value)
-            b.pack(side="top", fill="both", expand=True, padx=10, pady=5)
 
 
 if __name__ == "__main__":
