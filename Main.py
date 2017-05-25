@@ -1,11 +1,7 @@
 import tkinter as tk
 import importlib
-slrd_spec = importlib.util.find_spec("xlrd")
-found = slrd_spec is not None
-if found == False:
-    os.system("py xlrd/setup.py install")
-else:
-    import xlrd
+import os
+import xlrd
 
 class MainWindow(tk.Frame):
     counter = 0
@@ -178,6 +174,7 @@ class MainWindow(tk.Frame):
     def create_window_chapter_18(self):
         t = tk.Toplevel(self)
         t.wm_title(self.cell_18.value)
+
 
 
 
