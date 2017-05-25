@@ -100,8 +100,13 @@ class MainWindow(tk.Frame):
             chapter_0.strings.append(var)
         chapter_0.drop = tk.OptionMenu(chapter_0,variable,*chapter_0.strings,command=self.act)
         chapter_0.drop.grid(row=0, column=2)
+    def actVal(self,value):
+        return value
+
     def act(self,value):
-        print(self.value)
+        text = self.actVal(value)
+        chapter_0.label = tk.Label(self.chapter_0,text)
+
 
     def create_window_chapter_1(self):
         t = tk.Toplevel(self)

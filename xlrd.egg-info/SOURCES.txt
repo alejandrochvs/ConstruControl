@@ -1,7 +1,0 @@
-xlrd/pkg_doc.py
-xlrd/pythondoc.py
-xlrd/setup.py
-xlrd.egg-info/PKG-INFO
-xlrd.egg-info/SOURCES.txt
-xlrd.egg-info/dependency_links.txt
-xlrd.egg-info/top_level.txt
