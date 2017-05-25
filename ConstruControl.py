@@ -3,8 +3,8 @@ import xlrd
 import subprocess
 
 def run(runfile):
-  with open(runfile,"r") as rnf:
-    exec(rnf.read())
+    with open(runfile,"r") as rnf:
+        exec(rnf.read())
 
 def combine_funcs(*funcs):
     def combined_func(*args, **kwargs):
@@ -34,7 +34,7 @@ class MainWindow(tk.Frame):
 
     def admit(self):
             root.destroy
-            run('main.py')
+            run('Main.py')
 
     def create_window_create(self):
         t = tk.Toplevel(self)
