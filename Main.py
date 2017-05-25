@@ -1,5 +1,11 @@
 import tkinter as tk
-import xlrd
+import importlib
+slrd_spec = importlib.util.find_spec("xlrd")
+found = slrd_spec is not None
+if found == False:
+    os.system("py xlrd/setup.py install")
+else:
+    import xlrd
 
 class MainWindow(tk.Frame):
     counter = 0
